@@ -61,50 +61,18 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
       
       <!-- Product Card -->
-      <div class="bg-gray-400 rounded-xl shadow p-4 hover:scale-110 transition-transform">
-        <img src="https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//98/MTA-3541787/sosro_sosro-teh-botol-kotak--330-ml-_full02.jpg" 
-        alt="Snack" class="w-full h-40 object-cover rounded-md">
-        <h2 class="mt-3 text-base font-semibold text-white">Teh Botol Sosro</h2>
-          <a href="/payment">
-            <button class="mt-3 w-full bg-indigo-600 hover:bg-indigo-900 text-white font-medium py-2 rounded-lg">
-            Rp. 15.000
-            </button>
-          </a>
-      </div>
-
-      <!-- Copy product card as needed -->
-      <div class="bg-gray-400 rounded-xl shadow p-4 hover:scale-110 transition-transform">
-        <img src="https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//98/MTA-3541787/sosro_sosro-teh-botol-kotak--330-ml-_full02.jpg" 
-        alt="Drink" class="w-full h-40 object-cover rounded-md">
-        <h2 class="mt-3 text-base font-semibold text-white">Teh Botol Sosro</h2>
-        <a href="/payment">
-          <button class="mt-3 w-full bg-indigo-600 hover:bg-indigo-900 text-white font-medium py-2 rounded-lg">
-            Rp. 15.000
-          </button>
-        </a>
-      </div>
-
-      <div class="bg-gray-400 rounded-xl shadow p-4 hover:scale-110 transition-transform">
-        <img src="https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//98/MTA-3541787/sosro_sosro-teh-botol-kotak--330-ml-_full02.jpg" 
-        alt="Snack" class="w-full h-40 object-cover rounded-md">
-        <h2 class="mt-3 text-base font-semibold text-white">Teh Botol Sosro</h2>
-          <a href="/payment">
-            <button class="mt-3 w-full bg-indigo-600 hover:bg-indigo-900 text-white font-medium py-2 rounded-lg">
-            Rp. 15.000
-            </button>
-          </a>
-      </div>
-
-      <div class="bg-gray-400 rounded-xl shadow p-4 hover:scale-110 transition-transform">
-        <img src="https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//98/MTA-3541787/sosro_sosro-teh-botol-kotak--330-ml-_full02.jpg" 
-        alt="Snack" class="w-full h-40 object-cover rounded-md">
-        <h2 class="mt-3 text-base font-semibold text-white">Teh Botol Sosro</h2>
-          <a href="/payment">
-            <button class="mt-3 w-full bg-indigo-600 hover:bg-indigo-900 text-white font-medium py-2 rounded-lg">
-            Rp. 15.000
-            </button>
-          </a>
-      </div>
+      @foreach ($products as $product)
+        <div class="bg-gray-400 rounded-xl shadow p-4 hover:scale-110 transition-transform">
+          <img src="{{ $product['url'] }}" 
+          alt="Snack" class="w-full h-40 object-cover rounded-md">
+          <h2 class="mt-3 text-base font-semibold text-white">{{ $product['name'] }}</h2>
+            <a href="{{ route('payment', parameters: ['product_id' => $product['id'], 'price' => $product['price']]) }}">
+              <button class="mt-3 w-full bg-indigo-600 hover:bg-indigo-900 text-white font-medium py-2 rounded-lg">
+                Rp{{ number_format($product['price']) }}
+              </button>
+            </a>
+        </div>
+      @endforeach
 
     </div>
   </main>
